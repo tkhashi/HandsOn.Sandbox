@@ -1,0 +1,10 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Server",
+      "type": "shell",
+      "command": "curl -i -X POST http://localhost:3000/login"
+    }
+  ]
+}
