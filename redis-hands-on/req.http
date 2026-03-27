@@ -1,0 +1,25 @@
+curl http://localhost:3000/
+
+### 
+curl -i -X POST http://localhost:3000/login
+
+###
+curl --cookie "sessionId=64374f49-2b12-4722-9e34-90524cf4929e"; http://localhost:3000/me
+
+###
+curl -X POST --cookie "sessionId=64374f49-2b12-4722-9e34-90524cf4929e" http://localhost:3000/logout
+
+###
+curl http://localhost:3000/limited;
+
+###
+curl -X POST http://localhost:3000/score -H "Content-Type: application/json" -d '{"name":"alice","score":100}'
+
+###
+curl -X POST http://localhost:3000/score -H "Content-Type: application/json" -d '{"name":"bob","score":300}'
+
+###
+curl -X POST http://localhost:3000/score -H "Content-Type: application/json" -d '{"name":"carol","score":200}'
+
+###
+curl http://localhost:3000/ranking

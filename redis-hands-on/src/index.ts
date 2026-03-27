@@ -11,8 +11,10 @@ const SESSION_TTL_SECONDS = 60 * 30;
 const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW_SECONDS = 60;
 
+app.get('/', (c) => c.text('Redis hands-on running'))
+
 // Login
-app.get('/login', async (c) => {
+app.post('/login', async (c) => {
   const sessionId = crypto.randomUUID()
 
   const user = {
@@ -47,7 +49,7 @@ app.get('/me', async (c) => {
     return c.json({ message: 'no session' }, 401)
   }
 
-  const session = await redis.get(`session: ${sessionId}`)
+  const session = await redis.get(`session:${sessionId}`)
 
   if (!session) {
     return c.json({ message: 'invalid session' }, 401)
@@ -96,7 +98,7 @@ app.get('/limited', async (c) => {
   }
   // リクエスト数が制限を超えている場合は429を返す
   if (count > RATE_LIMIT_MAX) {
-    return c.json({ messsage: 'Too many requests' }, 429)
+    return c.json({ message: 'Too many requests' }, 429)
   }
 
   return c.json({

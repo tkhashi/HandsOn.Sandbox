@@ -349,7 +349,10 @@ for i in {1..7}; do curl http://localhost:3000/limited; echo; done
 Redis確認
 
 ``` bash
+docker exec -it redis-hands-on-redis-1 redis-cli
+
 GET rate_limit:local
+# タイムアウトのあるキーの寿命をゲット
 TTL rate_limit:local
 ```
 
